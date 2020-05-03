@@ -15,9 +15,10 @@ local function log_debug(...)
     local trace = debug.traceback()
     trace = split(trace, "\n\9")
     trace = split(trace[3], " ")
-    trace = trace[1] .. trace[2]
+    trace = string.gsub(trace[2], '"', '')
+    trace = string.gsub(trace, ']', '')
     trace = string.sub(trace, 1, string.len(trace)-1)
-    io.write("<" .. trace .. "|DEBUG> ")
+    io.write("[" .. trace .. "]: ")
     print(...)
 end
 
